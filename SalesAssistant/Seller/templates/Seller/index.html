@@ -1,0 +1,44 @@
+{% extends 'Seller/base.html' %} {% block title %} Home {% endblock title %}
+<!--  -->
+{% block content %}
+<!--  -->
+<div class="panel">
+    {% for product in products %}
+    <!--  -->
+    {% if product.number_of_products%}
+    <!--  -->
+    <div>
+
+        <p>{{product.product_name}} <span>
+            <small id="type">{{product.product_type}}</small>
+        </span></p>
+        <hr id="panel-line">
+        <!--  -->
+        {% if product.image %}
+        <img src="{{product.image.url}}" alt="Loading" height="150px" width="200px" />
+        <span>{{product.number_of_products}}</span>
+        <!--  -->
+        {% endif %}
+        <!--  -->
+        <p>Amount: <strong>&cent;</strong><span style="text-decoration: underline;color:rgb(193, 193, 201) ;font-size: 22px;; "> {{product.price}}</span></p>
+        <!--  -->
+        <p>Manf. Date:<span>{{product.manuf_date}}</span></p>
+        <!--  -->
+        <p>Expire Date:<span>{{product.expire_date|date}}</span></p>
+        <details>
+            <a href="{% url 'seller:show-description' product.id %}" class="detailed-description">Full Description</a>
+        </details>
+        <span>
+            <a id="btn-purchase" href="{% url 'seller:add-to-cart' product.id %}">Add To Cart</a>
+        </span>
+
+    </div>
+    <!--  -->
+    {%endif %}
+    <!--  -->
+    {% endfor %}
+    <!--  -->
+</div>
+<!--  -->
+
+{% endblock content %}

@@ -1,0 +1,24 @@
+<div id="main-nav">
+    <div>
+        <ul>
+            <li>
+                <a href="{% url 'seller:home' %}"> Seller </a>
+            </li>
+            <li>
+                <a onClick="popupForm()" href="{% url 'seller:expenses' %}">Add Items</a>
+            </li>
+            <li>
+                <a href="{% url 'seller:profile' %}">Profile</a>
+            </li>
+            <a id="nav-order" href="{% url 'seller:my-orders' %}">My Orders {{orders_number}}</a>
+        </ul>
+
+    </div>
+</div>
+
+<div id="side-bar-nav">
+    <ul>
+
+    </ul>
+
+</div>

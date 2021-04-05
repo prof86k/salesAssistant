@@ -1,0 +1,32 @@
+{% extends 'Seller/base.html' %}
+<!--  -->
+{% block title %} profile{% endblock title %}
+<!--  -->
+{% block content %}
+
+<!--  -->
+<div class="profile-info">
+    <div class="profile-header">
+        <h1>In Profile</h1>
+    </div>
+    <h3>Products Added</h3>
+    <div class="profile-items-info">
+
+        {% for product in products %}
+        <div class="profile-added-items">
+            <p>{{product}}</p>
+            <img src="{{product.image.url}}" width="220px" height="200px" />
+            <div class="profile-item-action">
+                <a href="{% url 'seller:edit_product' product.id %}" class="profile-edit-product-info">Edit</a>
+                <a href="{% url 'seller:delete-item' product.id %}" class="profile-delete-item">Delete</a>
+            </div>
+
+        </div>
+        <!--  -->
+        {% endfor %}
+        <!--  -->
+    </div>
+
+</div>
+
+{% endblock content %}

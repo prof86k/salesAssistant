@@ -1,0 +1,24 @@
+{% extends 'Seller/base.html' %}
+<!--  -->
+{% block title %} Category {% endblock title %}
+<!--  -->
+{% block content %}
+<!--  -->
+<div class="catergory-title">
+    <h3>Add Item's Category</h3>
+</div>
+<form action=" {% url 'seller:category' %}" method="POST" class="category-form">
+    {% csrf_token %}
+    <div>
+        Add Category: {{form.type_name}}
+    </div>
+    <div>
+        <input class="category-btn" type="submit" value="Submit" />
+    </div>
+
+</form>
+<div class="add-link">
+    <a href="{% url 'seller:add-to-stock' %}">Add Product</a>
+</div>
+<!--  -->
+{% endblock content %}

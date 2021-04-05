@@ -1,0 +1,50 @@
+{% extends 'Seller/base.html' %}
+<!--  -->
+{% block title %}{% endblock title %}
+<!--  -->
+{% block content %}
+<section class="purchase-product-info">
+    <h3>Product Information</h3>
+</section>
+<div class="product-purchase-info">
+    <section class="image-section">
+        {% if product.image %}
+        <img src="{{product.image.url}}" width="80px" height="100px" />
+        <!--  -->
+        {% endif %}
+    </section>
+
+    <section class="form-section">
+        <form action="{% url 'seller:add-to-cart' product.id %}" method="POST">
+            {% csrf_token %}
+            <!--  -->
+            <p>Product Name:</p>
+            <!--  -->
+            <input class="purchase-inputs" type="text" name="productName" value="{{product.product_name}}" disabled />
+            <!--  -->
+            <!--  -->
+            <p>No. To Buy:</p>
+            <!--  -->
+            {% for message in messages %}
+            <!--  -->
+            <p>{{message}}</p>
+            <!--  -->
+            {% endfor %}
+            <input class="purchase-inputs" type="number" name="number_to_buy" required />
+            <!--  -->
+            <p>Unit Amount:</p>
+            <!--  -->
+            <input class="purchase-inputs" type="number" name="price" value="{{product.price}}" disabled/>
+            <!--  -->
+            <input class="purchase-btn" type="submit" name="submit" value="Order" />
+        </form>
+    </section>
+
+</div>
+<!--  -->
+<div class="decline">
+    <a href="{% url 'seller:home' %}">Decline</a>
+</div>
+
+<!--  -->
+{% endblock content %}

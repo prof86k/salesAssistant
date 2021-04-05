@@ -1,0 +1,63 @@
+{% extends 'Seller/base.html' %}
+<!--  -->
+{% block title %} profile{% endblock title %}
+<!--  -->
+{% block content %}
+
+<!--  -->
+<div class="my-ordered-items">
+    {%for message in messages %}
+    <!--  -->
+    {{message}}
+    <!--  -->
+    {% endfor %}
+    <section class="ordered-products">
+        <div class="products-ordered">
+            <table border="1" cellspacing="2">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Number</th>
+                    <th>Unit Price</th>
+                    <th>Action</th>
+                </tr>
+                {% for item in orders %}
+                <!--  -->
+                <tr>
+                    <td style="text-transform: uppercase;">{{item.product}}</td>
+                    <td>{{item.number}}</td>
+                    <td>{{item.price}}</td>
+                    <td>
+                        <div class="action">
+                            <a id="eidt-ordered" href="#">Edit</a>
+                            <a id="remove-ordered" href="#">Remove</a>
+                        </div>
+
+                    </td>
+                </tr>
+                <!--  -->
+                {% endfor %}
+                <tr>
+                    <th>Total</th>
+                    <td id="total-price-info" colspan="3">{{total.total_price}}</td>
+                </tr>
+            </table>
+        </div>
+        <form action="{% url 'seller:my-orders' %}" class="buy-form" method="POST">
+            {% csrf_token %}
+            <div>
+                <input type="text" name="customer_name" placeholder="Enter Your Name" required />
+            </div>
+            <div>
+                <input type="email" name="customer_email" placeholder="Your Email" required>
+            </div>
+            <input type="submit" value="Buy" />
+        </form>
+    </section>
+    <section class="orders">
+        <a href="{% url 'seller:home' %}" id="order-more">Order More</a>
+        <a href="{% url 'seller:clear-orders' %}" class="clear-orders">Clear Orders</a>
+
+    </section>
+</div>
+<!--  -->
+{% endblock content %}

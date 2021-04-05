@@ -1,0 +1,17 @@
+{% extends 'Seller/base.html' %}
+<!--  -->
+{% block title %} show description {% endblock title %}
+
+<!--  -->
+{% block content %}
+
+<div class="description-img">
+    <img src="{{product.image.url}}" alt="Loading " width="200px" height="150px" />
+</div>
+<p>
+    {{product.description}}
+</p>
+<a id="btn-purchase" href="{% url 'seller:add-to-cart' product.id %}" class="back-to-buy">Add To Cart</a>
+<!--  -->
+
+{% endblock content %}

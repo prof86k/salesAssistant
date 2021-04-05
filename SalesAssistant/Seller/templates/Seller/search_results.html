@@ -1,0 +1,47 @@
+{% extends 'Seller/base.html' %}
+<!--  -->
+{% block title %}Results{% endblock title %}
+<!--  -->
+
+{% block content%}
+<!--  -->
+<div class="panel">
+    {% for product in products %}
+    <!--  -->
+    {% if product.number_of_products%}
+    <!--  -->
+    <div>
+        <p>{{product.product_name}}</p>
+        <hr>
+        <!--  -->
+        {% if product.image %}
+        <img src="{{product.image.url}}" width="100px" height="105px" />
+        <!--  -->
+        {% endif %}
+        <!--  -->
+        <p>Amount: <strong>&cent;</strong><span style="text-decoration: underline;color:rgb(193, 193, 201) ;font-size:larger; "> {{product.price}}</span></p>
+        <!--  -->
+        <p>Manf. Date:<span>{{product.manuf_date}}</span></p>
+        <!--  -->
+        <p>Expire Date:<span>{{product.expire_date|date}}</span></p>
+        <details>
+            <a href="{% url 'seller:show-description' product.id %}">
+                {{product.description}}
+            </a>
+        </details>
+        <span>
+            <a id="btn-purchase" href="{% url 'seller:add-to-cart' product.id %}">Add To Cart</a>
+        </span>
+
+    </div>
+    <!--  -->
+    {%endif %}
+    <!--  -->
+    {% empty %}
+    <!--  -->
+    <p>No Results Found For The Product with Name: <strong>{{item}}</strong></p>
+    {% endfor %}
+    <!--  -->
+</div>
+
+{% endblock content %}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--  -->
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title> {% block title %}{% endblock title %} </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="online shop manager,sales assistant, auto generate prices of goods,auto pricer" />
+    <meta name="author" content="KONJA KUMA SAMPSON,prof86k,Dr.Ksp-virus" />
+    <link rel="stylesheet" type="text/css" href="{% static '/seller/css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static '/seller/css/cat_and_add.css'%}" />
+    <link rel="stylesheet" type="text/css" href="{% static '/seller/css/main_page.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'seller/css/sales_and_orders.css' %}" />
+    <!--  -->
+
+    {% include "Seller/navbars.html" %}
+    <!--  -->
+    {% load crispy_forms_tags %}
+</head>
+
+<body>
+    <div id="main-content">
+        <div>
+            <div class="container-items">
+                <form action="{% url 'seller:search-results' %}" method="POST" class="search-form">
+                    {% csrf_token %}
+                    <input type="text" name="search" placeholder="eg. product name ,price or category" required/>
+                    <button class="search-btn">Search</button>
+                </form>
+            </div>
+            <marquee>Welcome To Seller </marquee>
+            <div class="web-logo">
+                <h1> mASTER mARKET</h1>
+                <hr style="border:2px solid red">
+            </div>
+
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+    <hr class="hr-above-footer">
+    <section>
+        <footer>
+            <section class="comments-section">
+                <h3>Leave Your Comments Here</h3>
+                <form>
+                    {% csrf_token %}
+                    <input type="email" name="email" placeholder="Email" required />
+                    <textarea name="comments" id="com" placeholder="Comment here" required></textarea>
+                    <input type="submit" value="Comment" />
+                </form>
+            </section>
+            {% include 'Seller/footer_links.html' %}
+        </footer>
+    </section>
+    <script language="javascript" type="text/javascript" src="{% static '/seller/js/salesInput.js' %}"></script>
+    <!-- <script language="javascript" type="text/javascript" src="{% static '/js/popupForm.js' %}"></script> -->
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+{% extends 'Seller/base.html' %}
+<!-- extend base html from parent -->
+{% load crispy_forms_tags %}
+<!-- load crispy form tags -->
+
+{% block title %} add product {% endblock title %}
+<!-- title -->
+
+
+
+<!-- body content -->
+
+{% block content %}
+<div class="product-info">
+    <form action="{% url 'seller:add-to-stock' %}" method="POST" class="product-form" onSubmit="doOnSubmit()" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!--  -->
+        <div>{{form.as_p}}</div>
+        <!--  -->
+        <div>
+            <p>Product Name:</p>
+            <input id="productName" type="text" name="productName" placeholder="Enter Product Name" required/>
+            <!--  -->
+        </div>
+        <div>
+            <!-- -->
+            <p>No. of Products: </p>
+            <input id="nproducts" type="number" name="numberofproducts" placeholder="Number of Products" />
+
+        </div>
+        <div>
+            <p>Purchase At:</p>
+            <input id="priceInput" type="number" name="unitPrice" oninput="doOnChange()" placeholder="Enter Purchase Price" required/>
+
+        </div>
+        <!--  -->
+        <div>
+            <p>Manuf. Date:</p>
+            <input type="date" name="manuf_date" placeholder="01-02-1996" />
+        </div>
+        <!--  -->
+        <div>
+            <p>Expire Date:</p>
+            <input type="date" name="expire_date" placeholder="02-01-1996" />
+            <!--  -->
+        </div>
+        <!--  -->
+
+
+        <div>
+            <p>Photo:</p>
+            <input type="file" name="product_image" required/>
+            <!--  -->
+        </div>
+
+
+
+        <!--  -->
+        <div>
+            </p>Current Pricing</p>
+            <input id="cprice" name="price" oninput="doOnChange()" placeholder="current princing" />
+        </div>
+
+        <div>
+            <!--  -->
+            <p>Description</p>
+            <textarea name="description" id="for-product-description" cols="30" rows="10" placeholder="Add Description"></textarea>
+        </div>
+
+        <button class="btn btn-primary">Submit</button>
+    </form>
+
+    <!--  -->
+    <div class="sales-info">
+        <h4>Current Product Information</h4>
+        <hr>
+        <p>Product Name: <strong></strong><span id="product_name"></span></strong>
+        </p>
+        <p>Cost Price: &cent;<span id="costPrice"></span></p>
+        <p>Selling Price: &cent;<span id="sellingPrice"></span></p>
+        <p>Percentage Charge: &percnt; <span id="percent"></span></p>
+        <p>Profit &cent; <span id="profit"></span></p>
+    </div>
+</div>
+<section class="section-link">
+    <a href="{% url 'seller:category' %}">Add Category First.</a>
+</section>
+
+
+
+{% endblock content %}

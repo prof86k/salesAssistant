@@ -1,0 +1,40 @@
+{% extends 'Seller/base.html' %}
+<!--  -->
+{% block title %} Category{% endblock title %}
+<!--  -->
+{% block content %}
+<!--  -->
+<div class="popup-form" id="expenseForm">
+    <form action=" {% url 'seller:expenses' %}" onSubmit="doSaveTransport()" method="POST" class="form-box">
+        {% csrf_token %}
+        <!--  -->
+        <div>
+            <input id="tamount" type="number" name="amount" placeholder="Total Amount" required/>
+        </div>
+        <!--  -->
+        <div>
+            <input id="tothers" type="number" name="others" placeholder="Other Charges" required/>
+        </div>
+        <!--  -->
+        <div>
+            <input class="btn" type="submit" value="Submit" />
+        </div>
+    </form>
+    <section class="linkers">
+        <p>
+            <small>
+                Add Products Types <small><a href="{% url 'seller:category' %}">Category</a></small>
+            </small>
+        </p>
+        <p>
+            <small>
+                Select Category to Add Product <a href="{% url 'seller:add-to-stock' %}">Add Product</a>
+            </small>
+        </p>
+
+    </section>
+
+</div>
+
+<!--  -->
+{% endblock content %}
